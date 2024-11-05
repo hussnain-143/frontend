@@ -1,0 +1,77 @@
+// npm install --save-dev jest
+
+// import * as Yup from 'yup';
+// import validationSchema from './path-to-your-validation-schema'; // adjust the path as needed
+
+// describe('Validation Schema', () => {
+//   it('should require a full name', async () => {
+//     const invalidData = { full_name: '' };
+//     await expect(validationSchema.validate(invalidData)).rejects.toThrow('Full name is required');
+//   });
+
+//   it('should require a username with at least one number', async () => {
+//     const invalidData = { user_name: 'username' };
+//     await expect(validationSchema.validate(invalidData)).rejects.toThrow('Username must contain at least one number');
+//   });
+
+//   it('should validate a correct username', async () => {
+//     const validData = { user_name: 'user123' };
+//     await expect(validationSchema.validate(validData)).resolves.toBe(validData);
+//   });
+
+//   it('should require a valid email', async () => {
+//     const invalidData = { email: 'invalid-email' };
+//     await expect(validationSchema.validate(invalidData)).rejects.toThrow('Invalid email');
+//   });
+
+//   it('should validate a correct email', async () => {
+//     const validData = { email: 'user@example.com' };
+//     await expect(validationSchema.validate(validData)).resolves.toBe(validData);
+//   });
+
+//   it('should require a password with 8-10 characters including at least one number', async () => {
+//     const invalidData = { password: 'short' };
+//     await expect(validationSchema.validate(invalidData)).rejects.toThrow('Password must be 8 characters');
+
+//     const invalidData2 = { password: 'longpassword' };
+//     await expect(validationSchema.validate(invalidData2)).rejects.toThrow('Password must be at most 10 characters');
+
+//     const invalidData3 = { password: 'validlen' };
+//     await expect(validationSchema.validate(invalidData3)).rejects.toThrow('Password must be 8 to 10 characters long and include at least one number');
+//   });
+
+//   it('should validate a correct password', async () => {
+//     const validData = { password: 'pass1234' };
+//     await expect(validationSchema.validate(validData)).resolves.toBe(validData);
+//   });
+
+//   it('should require a phone number with exactly 11 digits', async () => {
+//     const invalidData = { phone: '1234567890' };
+//     await expect(validationSchema.validate(invalidData)).rejects.toThrow('Phone number must be exactly 11 digits');
+//   });
+
+//   it('should validate a correct phone number', async () => {
+//     const validData = { phone: '12345678901' };
+//     await expect(validationSchema.validate(validData)).resolves.toBe(validData);
+//   });
+
+//   it('should require a CNIC in the format XXXXX-XXXXXXX-X', async () => {
+//     const invalidData = { cnic: '12345-1234567-12' };
+//     await expect(validationSchema.validate(invalidData)).rejects.toThrow('CNIC format XXXXX-XXXXXXX-X');
+//   });
+
+//   it('should validate a correct CNIC', async () => {
+//     const validData = { cnic: '12345-1234567-1' };
+//     await expect(validationSchema.validate(validData)).resolves.toBe(validData);
+//   });
+
+//   it('should require a location', async () => {
+//     const invalidData = { user_location: '' };
+//     await expect(validationSchema.validate(invalidData)).rejects.toThrow('Location is required');
+//   });
+
+//   it('should validate a location', async () => {
+//     const validData = { user_location: 'Abbottabad' };
+//     await expect(validationSchema.validate(validData)).resolves.toBe(validData);
+//   });
+// });

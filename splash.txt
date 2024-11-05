@@ -1,0 +1,72 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { AsyncStorage, Text, Image } from 'react-native';
+import axios from 'axios';
+import * as SplashScreen from 'expo-splash-screen';
+import { SplashContainer, AppTitle1, AppTitle2 } from '../components/styles';
+import Entypo from '@expo/vector-icons/Entypo';
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
+const Splash = () => {
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Retrieve token from AsyncStorage
+        const token = await AsyncStorage.getItem('token');
+        if (token) {
+          // Token exists, send it to server for validation
+          const response = await axios.post('YOUR_BACKEND_ENDPOINT/validate-token/', { token });
+          const { valid } = response.data;
+          if (valid) {
+            // Token is valid, navigate to home page
+            // Navigation logic here, e.g., navigation.navigate('Home');
+            console.log('Token is valid. Navigating to home page.');
+          } else {
+            // Token is invalid, navigate to login page
+            // Navigation logic here, e.g., navigation.navigate('Login');
+            console.log('Token is invalid. Navigating to login page.');
+          }
+        } else {
+          // Token does not exist, navigate to login page
+          // Navigation logic here, e.g., navigation.navigate('Login');
+          console.log('No token found. Navigating to login page.');
+        }
+      } catch (error) {
+        console.error('Error during app preparation:', error);
+      } finally {
+        // Tell the application to render
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      // This tells the splash screen to hide immediately! If we call this after
+      // `setAppIsReady`, then we may see a blank screen while the app is
+      // loading its initial state and rendering its first pixels. So instead,
+      // we hide the splash screen once we know the root view has already
+      // performed layout.
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
+  }
+
+  return (
+    <SplashContainer onLayout={onLayoutRootView}>
+      <Image resizeMode="cover" source={require(`../assets/splash.png`)} />
+      <AppTitle1>Quick</AppTitle1>
+      <AppTitle2>Assist</AppTitle2>
+    </SplashContainer>
+  );
+};
+
+export default Splash;
