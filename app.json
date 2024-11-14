@@ -12,7 +12,6 @@
       "backgroundColor": "#FBD1A5"
     },
     "assetBundlePatterns": ["**/*"],
-    "permissions": ["INTERNET"],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -20,6 +19,7 @@
       }
     },
     "android": {
+      "package": "com.hussnain.quickassist",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon1.png",
         "backgroundColor": "#FBD1A5"
@@ -31,7 +31,17 @@
     },
     "plugins": [
       "expo-secure-store",
-      ["@rnmapbox/maps", { "RNMapboxMapsImpl": "maplibre" }]
-    ]
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsImpl": "maplibre"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "89483f6c-e1d4-4bf7-a2b4-71a8ea562169"
+      }
+    }
   }
 }
